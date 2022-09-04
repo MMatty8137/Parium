@@ -1,0 +1,29 @@
+time,count,nameOfItem,classOfItem,stateOfItem,priceOfItem
+2022-09-04 14:48:45,1,Dell XPS 13 9320,N,Skladem,45 990 Kč
+2022-09-04 14:48:54,2,Dell Precision 5510,R,Skladem, 15 163 Kč
+2022-09-04 14:49:01,3,Dell XPS 13 9370,R,Ihned k odběru,20 226 Kč
+2022-09-04 14:49:08,4,"MacBook Air 13"" 2020 M1 256 GB",B,Omezený prodej,19 990 Kč
+2022-09-04 14:49:21,5,"MacBook Air 13"" 2020 M1 256 GB",B,Není skladem,19 990 Kč
+2022-09-04 14:49:32,6,"MacBook Air 13"" 2020 M1 256 GB",B,Není skladem,19 990 Kč
+2022-09-04 14:49:40,7,"MacBook Air 13"" 2020 M1 512 GB",B,Není skladem,23 990 Kč
+2022-09-04 14:49:49,8,"MacBook Air 13"" 2020 M1 512 GB",B,Není skladem,23 990 Kč
+2022-09-04 14:50:01,9,"MacBook Air 13"" 2020 M1 512 GB",B,Není skladem,23 990 Kč
+2022-09-04 14:50:11,10,iPad Air 2020 64GB WiFi,A,Není skladem,11 290 Kč
+2022-09-04 14:50:20,11,iPad Air 2020 64GB WiFi,A,Není skladem,11 290 Kč
+2022-09-04 14:50:28,12,iPad Air 2020 64GB WiFi,A,Není skladem,11 290 Kč
+2022-09-04 14:50:34,13,iPad Air 2020 64GB WiFi,A,Není skladem,11 290 Kč
+2022-09-04 14:50:44,14,iPad Air 2020 64GB WiFi,A,Omezený prodej,11 290 Kč
+2022-09-04 14:50:51,15,iPad Air 2020 64GB WiFi,B,Není skladem,10 590 Kč
+2022-09-04 14:50:59,16,iPad Air 2020 64GB WiFi,B,Není skladem,10 590 Kč
+2022-09-04 14:51:06,17,iPad Air 2020 64GB WiFi,B,Není skladem,10 590 Kč
+2022-09-04 14:51:13,18,iPad Air 2020 64GB WiFi,B,Není skladem,10 590 Kč
+2022-09-04 14:51:19,19,iPad Air 2020 64GB WiFi,B,Omezený prodej,10 590 Kč
+2022-09-04 14:51:28,20,iPad Air 2020 64GB WiFi,C,Není skladem,8 690 Kč
+2022-09-04 14:51:37,21,iPad Air 2020 64GB WiFi,C,Není skladem,8 690 Kč
+2022-09-04 14:51:46,22,iPad Air 2020 64GB WiFi,C,Není skladem,8 690 Kč
+2022-09-04 14:51:53,23,iPad Air 2020 64GB WiFi,C,Není skladem,8 690 Kč
+2022-09-04 14:52:00,24,iPad Air 2020 64GB WiFi,C,Není skladem,8 690 Kč
+2022-09-04 14:53:15,1,Dell XPS 13 9320,N,Skladem,45 990 Kč
+2022-09-04 14:53:21,2,Dell Precision 5510,R,Skladem, 15 163 Kč
+2022-09-04 14:54:21,1,Dell XPS 13 9320,N,Skladem,45 990 Kč
+2022-09-04 14:54:27,2,Dell Precision 5510,R,Skladem,15 163 Kč

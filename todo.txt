@@ -1,0 +1,5 @@
+improve GUI (use windows 11 theme)
+make GUI permanent
+optimise
+assign screenshots to entries in csv database
+make in input GUI
