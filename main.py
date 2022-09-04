@@ -22,7 +22,7 @@ from datetime import datetime
 
 def GUI2Function():
     root = Tk()
-    root.title("Parium - MobilPohotovost Watchdog v0.1.2")
+    root.title("Parium - MobilPohotovost Watchdog v0.1.2-alpha")
     width = 720
     height = 400
     screen_width = root.winfo_screenwidth()
