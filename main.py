@@ -183,13 +183,13 @@ with open('links.txt', 'r', encoding='utf8') as f:
             linkOfItem = contents
             timestamp = datetime.now()
             if linkOfItem.startswith('https://www.mp.cz/'):
-                eshop = mobilPohotovost
+                eshop = 'mobilPohotovost'
             if linkOfItem.startswith('https://www.eurotech.cz/'):
-                eshop = eurotech
+                eshop = 'eurotech'
             if linkOfItem.startswith('https://www.levnapc.cz/'):
-                eshop = levnaPC
+                eshop = 'levnaPC'
             if linkOfItem.startswith('https://www.czc.cz/'):
-                eshop = czc
+                eshop = 'czc'
             main()
         if contents.startswith('-') == True:
             contentType = 'divider'
