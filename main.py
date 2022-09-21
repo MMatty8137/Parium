@@ -161,6 +161,18 @@ def main():
                 stateOfItem = "Skladem"
         except:
             popupmsg("Invalid link!")
+    
+    if eshop == "apollos":
+        ## xpath element location
+        stateXPath = '/html/body/div[1]/div/div/div/main/section[1]/div/div[2]/div[2]/table/tbody/tr[2]/td[2]/span'
+        priceXPath = '/html/body/div[1]/div/div/div/main/section[1]/div/div[2]/div[4]/div[1]/b/p'
+        ## gets availibilty and price data
+        stateOfItem = driver.find_element("xpath", stateXPath).text
+        priceOfItem = driver.find_element("xpath", priceXPath).text
+        ## compatibility layer
+        if stateOfItem.startswith("skladem"):
+            stateOfItem = "Skladem"
+
 
     # create data input for csv table
     ## variable has to be global as it is the main variable of the whole program
@@ -214,6 +226,8 @@ with open('links.txt', 'r', encoding='utf8') as f:
                 eshop = 'levnaPC'
             if linkOfItem.startswith('https://www.czc.cz/'):
                 eshop = 'czc'
+            if linkOfItem.startswith('https://www.apollos.cz/'):
+                eshop = 'apollos'
             main()
         if contents.startswith('-') == True:
             contentType = 'divider'
