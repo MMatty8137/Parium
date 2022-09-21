@@ -19,10 +19,30 @@ import tkinter.ttk as ttk
 import csv
 from datetime import datetime
 
+def popupmsg(msg):
+    LARGE_FONT= ("Verdana", 12)
+    NORM_FONT = ("Helvetica", 10)
+    SMALL_FONT = ("Helvetica", 8)
+
+    popup = tk.Tk()
+    popup.wm_title("!")
+
+    width = 360
+    height = 200
+    screen_width = popup.winfo_screenwidth()
+    screen_height = popup.winfo_screenheight()
+    x = (screen_width/2) - (width/2)
+    y = (screen_height/2) - (height/2)
+
+    label = ttk.Label(popup, text=msg, font=NORM_FONT)
+    label.pack(side="top", fill="x", pady=10)
+    B1 = ttk.Button(popup, text="Okay", command = popup.destroy)
+    B1.pack()
+    popup.mainloop()
 
 def GUI2Function():
     root = Tk()
-    root.title("Parium - MobilPohotovost Watchdog v0.1.2-alpha")
+    root.title("Parium - MobilPohotovost Watchdog v0.2.0-alpha")
     width = 720
     height = 400
     screen_width = root.winfo_screenwidth()
@@ -124,52 +144,56 @@ def main():
         priceXPath = '//*[@id="spanTotalPriceAndTax"]'
         stateSelectorPath = 'body > div.Content > div.Main > div.MainRight > div.ProductPage > div.ProductTopPanel > div.ProductInfo > font > b'
         ## gets availibilty and price data
-        priceOfItem = driver.find_element("xpath", priceXPath).text
-        stateOfItem = driver.find_element("css selector", stateSelectorPath).text
+        try:
+            priceOfItem = driver.find_element("xpath", priceXPath).text
+            stateOfItem = driver.find_element("css selector", stateSelectorPath).text
+        except:
+            priceOfItem = "ERROR"
+            stateOfItem = "ERROR"
         ## fixes for aesthetics
         priceOfItem = priceOfItem.rstrip(',-')
         priceOfItem = priceOfItem + " Kč"
         priceOfItem = priceOfItem[1:]
         ## compatibility for availibility count
-        stateOfItemNumber = int(stateOfItem) 
-        if stateOfItemNumber >= 1:
-            stateOfItem = "Skladem"
-
-
-    # locates availibility and price by xpath
-    stateOfItem = driver.find_element("xpath", stateXPath).text
-    priceOfItem = driver.find_element("xpath", priceXPath).text
+        try:
+            stateOfItemNumber = int(stateOfItem) 
+            if stateOfItemNumber >= 1:
+                stateOfItem = "Skladem"
+        except:
+            popupmsg("Invalid link!")
 
     # create data input for csv table
     ## variable has to be global as it is the main variable of the whole program
     global overviewOfItem
-    overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
-
-    # make a screenshot from the website
-    ## screenshot name with relative location dependent on the main.exe/main.py location
-    screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
-    ## fix compatibility for names within file subsystem
-    screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
-    ## make the actual screenshot and quit driver session
-    driver.save_screenshot(screenshotName)
-    driver.quit()
-
-    # counting circuit for csv table data (so far unutilised)
-    global count
-
-    # data for csv table formatter
-    if nameOfItem.startswith("Apple Mac"):
-        count += 1
-        # macbook compatibility layer (legacy)
-        data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
+    if stateOfItem or priceOfItem == "ERROR":
+        pass
     else:
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem[-1], stateOfItem, priceOfItem]
+        overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
+        # make a screenshot from the website
+        ## screenshot name with relative location dependent on the main.exe/main.py location
+        screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
+        ## fix compatibility for names within file subsystem
+        screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
+        ## make the actual screenshot and quit driver session
+        driver.save_screenshot(screenshotName)
+        driver.quit()
 
-    # data for csv table inputter
-    f = open("metadata.csv", "a", encoding='UTF8')
-    writer = csv.writer(f)
-    writer.writerow(data)
+        # counting circuit for csv table data (so far unutilised)
+        global count
+
+        # data for csv table formatter
+        if nameOfItem.startswith("Apple Mac"):
+            count += 1
+            # macbook compatibility layer (legacy)
+            data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
+        else:
+            count += 1
+            data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem[-1], stateOfItem, priceOfItem]
+
+        # data for csv table inputter
+        f = open("metadata.csv", "a", encoding='UTF8')
+        writer = csv.writer(f)
+        writer.writerow(data)
 
 with open('links.txt', 'r', encoding='utf8') as f:
     global count
