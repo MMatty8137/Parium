@@ -22,4 +22,4 @@ _Development in progress_
 
 Made with ❤️ in 🇪🇺
 
-version 0.1.2
+version 0.2.0
