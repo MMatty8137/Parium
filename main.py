@@ -66,191 +66,110 @@ def GUI2Function():
     if __name__ == '__main__':
         root.mainloop()
 
-def mobilPohotovost():
+def main():
+    # create runtime window
     options = Options()
     options.headless = True
     options.add_argument("--window-size=1920,1200")
 
+    # chrome web driver location, if installed someplace else, can be changed, use relative location
     executablePathWebDriverChrome = './chromedriver_win32/chromedriver.exe'
     driver = webdriver.Chrome(options=options, executable_path=executablePathWebDriverChrome)
     driver.implicitly_wait(10)
 
+    # opens website based on link created within the main loop
     driver.get(linkOfItem)
+
+    # individial eshop data input layers
+    if eshop == "mobilPohotovost":
+        ## cookie accept for screenshot
+        wait = WebDriverWait(driver, 15)
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="cms-app"]/div[2]/div/div/div/div[3]/button[1]')))
+        driver.find_element("xpath", '//*[@id="cms-app"]/div[2]/div/div/div/div[3]/button[1]').click()
+        driver.implicitly_wait(10)
+        ## xpath element location
+        stateXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[1]/div/div/span'
+        priceXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[2]/div'
+        ## gets availibilty and price data
+        stateOfItem = driver.find_element("xpath", stateXPath).text
+        priceOfItem = driver.find_element("xpath", priceXPath).text
+        ## compatibility layer
+        if stateOfItem.startswith("Prodej pouze na"):
+            stateOfItem = "Omezený prodej"
     
-    ### cookie accept for screenshot
-    wait = WebDriverWait(driver, 15)
-    wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="cms-app"]/div[2]/div/div/div/div[3]/button[1]')))
-    driver.find_element("xpath", '//*[@id="cms-app"]/div[2]/div/div/div/div[3]/button[1]').click()
+    if eshop == "eurotech":
+        ## xpath element location
+        stateXPath = '//*[@id="id_dostupnost"]'
+        priceXPath = '//*[@id="detail_cenas"]'
+        ## fixes for aesthetics
+        stateOfItem = stateOfItem.capitalize()
+        priceOfItem = priceOfItem + " Kč"
+        ## gets availibilty and price data
+        stateOfItem = driver.find_element("xpath", stateXPath).text
+        priceOfItem = driver.find_element("xpath", priceXPath).text
 
-    driver.implicitly_wait(10)
+    if eshop == "czc":
+        ## xpath or css selector element location
+        priceXPath = '//*[@id="product-price-and-delivery-section"]/div[3]/div/span/span[2]'
+        stateSelectorPath = '#warehouse > span'
+        ## gets availibilty and price data
+        priceOfItem = driver.find_element("xpath", priceXPath).text
+        stateOfItem = driver.find_element("css selector", stateSelectorPath).text
+        ## fixes for aesthetics
+        if stateOfItem.startswith("Skladem"):
+            stateOfItem = "Skladem"
 
-    stateXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[1]/div/div/span'
-    priceXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[2]/div'
+    if eshop == "levnaPC":
+        ## xpath or css selector element location
+        priceXPath = '//*[@id="spanTotalPriceAndTax"]'
+        stateSelectorPath = 'body > div.Content > div.Main > div.MainRight > div.ProductPage > div.ProductTopPanel > div.ProductInfo > font > b'
+        ## gets availibilty and price data
+        priceOfItem = driver.find_element("xpath", priceXPath).text
+        stateOfItem = driver.find_element("css selector", stateSelectorPath).text
+        ## fixes for aesthetics
+        priceOfItem = priceOfItem.rstrip(',-')
+        priceOfItem = priceOfItem + " Kč"
+        priceOfItem = priceOfItem[1:]
+        ## compatibility for availibility count
+        stateOfItemNumber = int(stateOfItem) 
+        if stateOfItemNumber >= 1:
+            stateOfItem = "Skladem"
 
+
+    # locates availibility and price by xpath
     stateOfItem = driver.find_element("xpath", stateXPath).text
-    if stateOfItem.startswith("Prodej pouze na"):
-        stateOfItem = "Omezený prodej"
     priceOfItem = driver.find_element("xpath", priceXPath).text
-    print(nameOfItem, classOfItem, stateOfItem, priceOfItem)
+
+    # create data input for csv table
+    ## variable has to be global as it is the main variable of the whole program
     global overviewOfItem
     overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
-    print(overviewOfItem)
+
+    # make a screenshot from the website
+    ## screenshot name with relative location dependent on the main.exe/main.py location
     screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
+    ## fix compatibility for names within file subsystem
     screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
-    print(screenshotName)
+    ## make the actual screenshot and quit driver session
     driver.save_screenshot(screenshotName)
     driver.quit()
+
+    # counting circuit for csv table data (so far unutilised)
     global count
+
+    # data for csv table formatter
     if nameOfItem.startswith("Apple Mac"):
         count += 1
+        # macbook compatibility layer (legacy)
         data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
     else:
         count += 1
         data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem[-1], stateOfItem, priceOfItem]
+
+    # data for csv table inputter
     f = open("metadata.csv", "a", encoding='UTF8')
     writer = csv.writer(f)
     writer.writerow(data)
-
-def Eurotech():
-    options = Options()
-    options.headless = True
-    options.add_argument("--window-size=1920,1200")
-
-    executablePathWebDriverChrome = './chromedriver_win32/chromedriver.exe'
-    driver = webdriver.Chrome(options=options, executable_path=executablePathWebDriverChrome)
-    driver.implicitly_wait(10)
-
-    driver.get(linkOfItem)
-
-    stateXPath = '//*[@id="id_dostupnost"]'
-    priceXPath = '//*[@id="detail_cenas"]'
-    stateOfItem = driver.find_element("xpath", stateXPath).text
-    priceOfItem = driver.find_element("xpath", priceXPath).text
-
-    ### fixes for aesthetics
-    stateOfItem = stateOfItem.capitalize()
-    priceOfItem = priceOfItem + " Kč"
-
-    print(nameOfItem, classOfItem, stateOfItem, priceOfItem)
-    global overviewOfItem
-    overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
-    print(overviewOfItem)
-    screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
-    screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
-    print(screenshotName)
-    driver.save_screenshot(screenshotName)
-    driver.quit()
-    global count
-    if nameOfItem.startswith("Apple Mac"):
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
-    else:
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem, stateOfItem, priceOfItem]
-    f = open("metadata.csv", "a", encoding='UTF8')
-    writer = csv.writer(f)
-    writer.writerow(data)
-
-def levnaPC():
-    options = Options()
-    options.headless = True
-    options.add_argument("--window-size=1920,1200")
-
-    executablePathWebDriverChrome = './chromedriver_win32/chromedriver.exe'
-    driver = webdriver.Chrome(options=options, executable_path=executablePathWebDriverChrome)
-    driver.implicitly_wait(10)
-
-    driver.get(linkOfItem)
-
-    priceXPath = '//*[@id="spanTotalPriceAndTax"]'
-    stateSelectorPath = 'body > div.Content > div.Main > div.MainRight > div.ProductPage > div.ProductTopPanel > div.ProductInfo > font > b'
-    priceOfItem = driver.find_element("xpath", priceXPath).text
-    stateOfItem = driver.find_element("css selector", stateSelectorPath).text
-    print(stateOfItem)
-    stateOfItemNumber = int(stateOfItem) 
-    if stateOfItemNumber >= 1:
-        stateOfItem = "Skladem"
-
-    ### fixes for aesthetics
-    priceOfItem = priceOfItem.rstrip(',-')
-    priceOfItem = priceOfItem + " Kč"
-    priceOfItem = priceOfItem[1:]
-
-    print(nameOfItem, classOfItem, stateOfItem, priceOfItem)
-    global overviewOfItem
-    overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
-    print(overviewOfItem)
-    screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
-    screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
-    print(screenshotName)
-    driver.save_screenshot(screenshotName)
-    driver.quit()
-    global count
-    if nameOfItem.startswith("Apple Mac"):
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
-    else:
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem, stateOfItem, priceOfItem]
-    f = open("metadata.csv", "a", encoding='UTF8')
-    writer = csv.writer(f)
-    writer.writerow(data)
-
-def CZC():
-    options = Options()
-    options.headless = True
-    options.add_argument("--window-size=1920,1200")
-
-    executablePathWebDriverChrome = './chromedriver_win32/chromedriver.exe'
-    driver = webdriver.Chrome(options=options, executable_path=executablePathWebDriverChrome)
-    driver.implicitly_wait(10)
-
-    driver.get(linkOfItem)
-
-    priceXPath = '//*[@id="product-price-and-delivery-section"]/div[3]/div/span/span[2]'
-    stateSelectorPath = '#warehouse > span'
-    priceOfItem = driver.find_element("xpath", priceXPath).text
-    stateOfItem = driver.find_element("css selector", stateSelectorPath).text
-    print(stateOfItem)
-    if stateOfItem.startswith("Skladem"):
-        stateOfItem = "Skladem"
-    print(nameOfItem, classOfItem, stateOfItem, priceOfItem)
-    global overviewOfItem
-    overviewOfItem   = nameOfItem + " " + classOfItem + " " + stateOfItem + " " + priceOfItem
-    print(overviewOfItem)
-    screenshotName = './screenshots/Screenshot ' + str(datetime.now())[0:-7] + '.png'
-    screenshotName = screenshotName.replace(" ", "_").replace(":", "_").replace("-", "_")
-    print(screenshotName)
-    driver.save_screenshot(screenshotName)
-    driver.quit()
-    global count
-    if nameOfItem.startswith("Apple Mac"):
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem[6:], classOfItem[-1], stateOfItem, priceOfItem]
-    else:
-        count += 1
-        data = [str(datetime.now())[0:-7], count, nameOfItem, classOfItem, stateOfItem, priceOfItem]
-    f = open("metadata.csv", "a", encoding='UTF8')
-    writer = csv.writer(f)
-    writer.writerow(data)
-
-def GUIFunction():
-    layout = [[sg.Text(overviewOfItem)], [sg.Button("OK")]]
-    window = sg.Window("Demo", layout)
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        # presses the OK button
-        if event == "OK" or event == sg.WIN_CLOSED:
-            break
-
-    window.close()
-
-def writeFunction():
-    text_file = open("metadata.txt", "a", encoding='utf8')
-    text_file.write(overviewOfItem)
-    text_file.write("\n")
-    text_file.close()
 
 with open('links.txt', 'r', encoding='utf8') as f:
     global count
@@ -264,13 +183,14 @@ with open('links.txt', 'r', encoding='utf8') as f:
             linkOfItem = contents
             timestamp = datetime.now()
             if linkOfItem.startswith('https://www.mp.cz/'):
-                mobilPohotovost()
+                eshop = mobilPohotovost
             if linkOfItem.startswith('https://www.eurotech.cz/'):
-                Eurotech()
+                eshop = eurotech
             if linkOfItem.startswith('https://www.levnapc.cz/'):
-                levnaPC()
+                eshop = levnaPC
             if linkOfItem.startswith('https://www.czc.cz/'):
-                CZC()
+                eshop = czc
+            main()
         if contents.startswith('-') == True:
             contentType = 'divider'
         if contents.startswith('name') == True:
