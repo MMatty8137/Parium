@@ -4,6 +4,12 @@ class N
 ---
 https://www.czc.cz/dell-xps-13-plus-9320-cerna_3/345935/produkt?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeN-qR3NSZA-86GK6n2u2xuw1nx6OC_3TvExT26U81Cu-UmGppeP2_8aAuMVEALw_wcB
 ---
+name Dell XPS 13 7390
+---
+class N 
+---
+https://www.apollos.cz/produkt/dell-xps-13-7390-stribrna-7390-13548/78/
+---
 name Dell Precision 5510
 ---
 class R
