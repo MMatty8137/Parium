@@ -16,13 +16,12 @@ class R
 ---
 https://www.levnapc.cz/dell-precision-5510.html
 ---
-***
 name Dell XPS 13 9370
 ---
 class R
 ---
 https://www.eurotech.cz/dell-xps-13-9370-ssd-4k-1/?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeNMLUkjxnP9teqmo37NzBsRouyBCztx6qFxWtYfa8hoCxnsOKKcOVEaAvH0EALw_wcB
----
+***
 name Apple MacBook Air 13" 2020 M1 256 GB
 ---
 class U-B 
