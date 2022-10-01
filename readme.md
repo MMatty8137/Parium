@@ -11,9 +11,10 @@
 
 ### supported e-shops
 - mobilpohotovost ('mp.cz' links)
-- eurotech ('eurotech.cz' links)
+- eurotech ('eurotech.cz' links, uses experimental method)
 - levnapc ('levnapc.cz' links)
 - CZC ('czc.cz' links)
+- Apollos ('apollos.cz' links)
 
 ### notes
 2022-09-04 - @matyasmatta
