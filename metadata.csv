@@ -1,12 +1,2 @@
 time,count,nameOfItem,classOfItem,stateOfItem,priceOfItem
-2022-10-01 16:03:39,1,Dell XPS 13 9320,N,Skladem,44 390 Kč
-2022-10-01 16:03:45,2,Dell XPS 13 7390,N,Není skladem,20 411 Kč
-2022-10-01 16:03:50,3,Dell Precision 5510,R,Skladem,14 343 Kč
-2022-10-01 16:03:57,4,Dell XPS 13 9370,R,Skladem,20 833 Kč
-2022-10-01 16:05:21,1,Dell XPS 13 9320,N,Skladem,44 390 Kč
-2022-10-01 16:05:28,2,Dell XPS 13 7390,N,Není skladem,20 411 Kč
-2022-10-01 16:05:33,3,Dell Precision 5510,R,Skladem,14 343 Kč
-2022-10-01 16:05:40,4,Dell XPS 13 9370,R,Skladem,20 833 Kč
-2022-10-01 16:07:21,1,Dell XPS 13 9320,N,Skladem,44 390 Kč
-2022-10-01 16:07:26,2,Dell Precision 5510,R,Skladem,14 343 Kč
-2022-10-01 16:07:34,3,Dell XPS 13 9370,R,Ihned k odběru,20 833 Kč
+

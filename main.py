@@ -32,7 +32,7 @@ def popupmsg(msg):
 
 def GUI2Function():
     root = Tk()
-    root.title("Parium - MobilPohotovost Watchdog v0.2.1-alpha")
+    root.title("Parium - MobilPohotovost Watchdog v0.3.0-alpha")
     width = 720
     height = 400
     screen_width = root.winfo_screenwidth()
