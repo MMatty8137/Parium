@@ -17,7 +17,7 @@
 - Apollos ('apollos.cz' links)
 
 ### notes
-2022-09-04 - @matyasmatta
+2022-10-01 - @matyasmatta
 
 _Development in progress_
 
