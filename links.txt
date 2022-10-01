@@ -2,6 +2,8 @@ name Dell XPS 13 9320
 ---
 class N
 ---
+https://www.levnapc.cz/test
+***
 https://www.czc.cz/dell-xps-13-plus-9320-cerna_3/345935/produkt?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeN-qR3NSZA-86GK6n2u2xuw1nx6OC_3TvExT26U81Cu-UmGppeP2_8aAuMVEALw_wcB
 ---
 name Dell XPS 13 7390
@@ -16,13 +18,12 @@ class R
 ---
 https://www.levnapc.cz/dell-precision-5510.html
 ---
-***
 name Dell XPS 13 9370
 ---
 class R
 ---
 https://www.eurotech.cz/dell-xps-13-9370-ssd-4k-1/?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeNMLUkjxnP9teqmo37NzBsRouyBCztx6qFxWtYfa8hoCxnsOKKcOVEaAvH0EALw_wcB
----
+***
 name Apple MacBook Air 13" 2020 M1 256 GB
 ---
 class U-B 
