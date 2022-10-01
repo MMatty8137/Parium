@@ -32,7 +32,7 @@ def popupmsg(msg):
 
 def GUI2Function():
     root = Tk()
-    root.title("Parium - MobilPohotovost Watchdog v0.2.1-alpha")
+    root.title("Parium - MobilPohotovost Watchdog v0.3.1-alpha")
     width = 720
     height = 400
     screen_width = root.winfo_screenwidth()
@@ -101,8 +101,8 @@ def main(method):
                 driver.find_element("xpath", '//*[@id="cms-app"]/div[2]/div/div/div/div[3]/button[1]').click()
                 driver.implicitly_wait(10)
                 ## xpath element location
-                stateXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[1]/div/div/span'
-                priceXPath = '//*[@id="component-43773"]/div/div[1]/div[2]/div/div[6]/div[1]/div[2]/div'
+                stateXPath = '//*[@id="component-46557"]/div/div[1]/div[2]/div/div[6]/div[1]/div[1]/div/div/span'
+                priceXPath = '//*[@id="component-46557"]/div/div[1]/div[2]/div/div[6]/div[1]/div[2]/div'
                 ## gets availibilty and price data
                 stateOfItem = driver.find_element("xpath", stateXPath).text
                 priceOfItem = driver.find_element("xpath", priceXPath).text

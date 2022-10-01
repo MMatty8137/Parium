@@ -2,8 +2,6 @@ name Dell XPS 13 9320
 ---
 class N
 ---
-https://www.levnapc.cz/test
-***
 https://www.czc.cz/dell-xps-13-plus-9320-cerna_3/345935/produkt?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeN-qR3NSZA-86GK6n2u2xuw1nx6OC_3TvExT26U81Cu-UmGppeP2_8aAuMVEALw_wcB
 ---
 name Dell XPS 13 7390
