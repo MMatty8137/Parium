@@ -1,27 +1,3 @@
-name Dell XPS 13 9320
----
-class N
----
-https://www.czc.cz/dell-xps-13-plus-9320-cerna_3/345935/produkt?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeN-qR3NSZA-86GK6n2u2xuw1nx6OC_3TvExT26U81Cu-UmGppeP2_8aAuMVEALw_wcB
----
-name Dell XPS 13 7390
----
-class N 
----
-https://www.apollos.cz/produkt/dell-xps-13-7390-stribrna-7390-13548/78/
----
-name Dell Precision 5510
----
-class R
----
-https://www.levnapc.cz/dell-precision-5510.html
----
-name Dell XPS 13 9370
----
-class R
----
-https://www.eurotech.cz/dell-xps-13-9370-ssd-4k-1/?gclid=Cj0KCQjwmdGYBhDRARIsABmSEeNMLUkjxnP9teqmo37NzBsRouyBCztx6qFxWtYfa8hoCxnsOKKcOVEaAvH0EALw_wcB
-***
 name Apple MacBook Air 13" 2020 M1 256 GB
 ---
 class U-B 
@@ -37,7 +13,7 @@ class U-B
 https://www.mp.cz/notebook-apple-macbook-air-13-2020-m1-8-core-512gb-silver-pouzite-p-118615
 https://www.mp.cz/notebook-apple-macbook-air-13-2020-m1-8-core-512gb-gold-pouzite-p-118616
 https://www.mp.cz/notebook-apple-macbook-air-13-2020-m1-8-core-512gb-space-grey-pouzite-p-118614
----
+***
 name iPad Air 2020 64GB WiFi
 ---
 class U-A
